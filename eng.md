@@ -121,7 +121,7 @@ CMD 按需执行依赖，seajs 是它的实现
 
 一个使用 JavaScript 实现的开源可视化数据图表库。作为一款基于 JavaScript 的数据可视化图表库，ECharts 为用户提供直观，生动，可交互，可个性化定制的数据可视化图表，让项目数据能清晰的被理解和发现差异
 
-echarts 相当于一个壳子，有自己的主题、类型等一些配置，而绘画 canvas 等部分则是才用 `ZRender`
+echarts 相当于一个壳子，有自己的主题、类型等一些配置，而核心 canvas 等部分则是采用 `ZRender`
 
 ZRender 是一个 canvas 类库，MVC 封装，数据驱动，提供类 Dom 事件模型
 
