@@ -63,11 +63,17 @@
 ### 5. CSS3 新增伪类有那些?
 
 **p:first-of-type** 选择属于其父元素的首个元素
+
 **p:last-of-type** 选择属于其父元素的最后元素
+
 **p:only-of-type** 选择属于其父元素唯一的元素
+
 **p:only-child** 选择属于其父元素的唯一子元素
+
 **p:nth-child(2)** 选择属于其父元素的第二个子元素
+
 **:enabled :disabled** 表单控件的禁用状态。
+
 **:checked** 单选框或复选框被选中。
 
 ### 6. css 不知宽高的元素居中?
@@ -104,11 +110,23 @@ margin: auto;
 
 ```css
 /* after */
-display: table;
-text-algin: center;
-/* children */
 display: table-cell;
+text-align: center;
 vertical-align: middle;
+
+/* children */
+display: inline-block;
+```
+
+5. grid 布局
+
+```css
+/* after */
+display: grid;
+
+/* children */
+align-self: center;
+justify-self: center;
 ```
 
 ### 7. display 有哪些值？说明他们的作用?
