@@ -91,7 +91,7 @@ transform: translate(-50%, -50%);
 
 ```css
 display: flex;
-align-items: center; /* ang nai i len s */
+align-items: center;
 justify-content: center;
 ```
 
@@ -142,6 +142,7 @@ justify-self: center;
 | inherit      | 规定应该从父元素继承 display 属性的值 |
 | flex         | 将对象作为弹性伸缩盒显示              |
 | inline-flex  | 将对象作为内联块级弹性伸缩盒显示      |
+| grid         | 将对象作为网格布局                    |
 
 ### 8. position 的值
 
@@ -157,8 +158,8 @@ justify-self: center;
 
 ### 9. CSS3 有哪些新特性？
 
-1. RGBA 和透明度
-2. background-image background-origin(content-box/padding-box/border-box) background-size background-repeat
+1. RGBA 和 opacity
+2. `background-image` `background-origin(content-box/padding-box/border-box)` `background-size` `background-repeat`
 3. word-wrap（对长的不可分割单词换行）word-wrap：break-word
 4. 文字阴影：text-shadow： 5px 5px 5px #FF0000;（水平阴影，垂直阴影，模糊距离，阴影颜色）
 5. font-face 属性：定义自己的字体
@@ -173,6 +174,8 @@ justify-self: center;
 试用场景：弹性布局适合于移动前端开发，在 Android 和 ios 上也完美支持。
 
 ### 11. 用纯 CSS 创建一个三角形的原理是什么？
+
+> 利用的元素转角填充平分的原理
 
 首先，需要把元素的宽度、高度设为 0。然后设置边框样式。
 
@@ -305,6 +308,7 @@ _color: #444; /* IE6 */
 ### 15. display:none 与 visibility：hidden 的区别？
 
 **display：none** 不显示对应的元素，在文档布局中不再分配空间（回流+重绘）
+
 **visibility：hidden** 隐藏对应元素，在文档布局中仍保留原来的空间（重绘）
 
 ### 16. position 跟 display、overflow、float 这些特性相互叠加后会怎么样？
@@ -341,7 +345,7 @@ position：absolute/fixed 优先级最高，有他们在时，float 不起作用
 **清除浮动的方式：**
 
 - 父级 div 定义 height
-- 最后一个浮动元素后加空 div 标签 并添加样式 clear:both【一般用::before
+- 最后一个浮动元素后加空 div 标签 并添加样式 clear:both【一般用::before】
 - 包含浮动元素的父标签添加样式 overflow 为 hidden 或 auto。
 - 父级 div 定义 zoom
 
@@ -352,6 +356,14 @@ position：absolute/fixed 优先级最高，有他们在时，float 不起作用
 ### 20. 移动端的布局用过媒体查询吗？
 
 通过媒体查询可以为不同大小和尺寸的媒体定义不同的 css，适应相应的设备的显示
+
+```css
+@media screen and (max-width: 300px) {
+  body {
+    background-color: lightblue;
+  }
+}
+```
 
 ### 21. CSS 优化、提高性能的方法有哪些？
 
