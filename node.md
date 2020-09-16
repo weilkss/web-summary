@@ -88,6 +88,39 @@ nodejs 是服务端的一门技术，它是基于 Google js v8 引擎而开发�
 - 使用 js 作为编程语言，对前端开发者友好
 - 使用的异步处理机制和事件驱动
 
+### 11. 浏览器和 node 中的事件循环有什么不一样？
+
+首先，浏览器的 Event loop 是在 HTML5 中定义的规范，而 node 中则由 libuv 库实现，
+
+libuv 已经对 event loop 作出了实现，而 html5 规范中只是定义了浏览器中 event loop 的模型，具体实现留给了浏览器厂商
+
+js 执行为单线程（不考虑 web worker），所有代码皆在主线程调用栈完成执行。当主线程任务清空后才会去轮询取任务队列中任务
+
+异步任务分为 task（宏任务，也可称为 macroTask）和 microtask（微任务）两类
+
+**浏览器**
+
+- 执行完主执行线程中的任务。
+- 取出 Microtask Queue 中任务执行直到清空。
+- 取出 Macrotask Queue 中一个任务执行。
+- 取出 Microtask Queue 中任务执行直到清空。
+- 重复 3 和 4。
+
+即为同步完成，一个宏任务，所有微任务，一个宏任务，所有微任务
+
+如果 microtask 一直被添加，则会继续执行 microtask，“卡死”macrotask
+
+**node**
+
+在 node 中事件每一轮循环按照顺序分为 6 个阶段，来自 libuv 的实现：
+
+1. timers：执行满足条件的 setTimeout、setInterval 回调。
+2. I/O callbacks：是否有已完成的 I/O 操作的回调函数，来自上一轮的 poll 残留。
+3. idle，prepare：可忽略
+4. poll：等待还没完成的 I/O 事件，会因 timers 和超时时间等结束等待。
+5. check：执行 setImmediate 的回调。
+6. close callbacks：关闭所有的 closing handles，一些 onclose 事件。
+
 ## 更多面试题
 
 - [常见 css 的面试题](./css.md)
