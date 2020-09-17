@@ -33,5 +33,5 @@
 | `select`        | `se lai ke te`        | 选择     |
 | `effect`        | `yi fei ke te`        | 影响     |
 | `subscribe`     | `sa pu si guai pu`    | 订阅     |
-| `proxy`         | `pa ke se`            | 代理     |
+| `proxy`         | `pa bu se`            | 代理     |
 | `property`      | `pa bu li`            | 财产     |

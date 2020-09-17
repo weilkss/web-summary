@@ -121,6 +121,8 @@ js 执行为单线程（不考虑 web worker），所有代码皆在主线程调
 5. check：执行 setImmediate 的回调。
 6. close callbacks：关闭所有的 closing handles，一些 onclose 事件。
 
+[说说事件循环机制](https://juejin.im/post/6844904079353708557)
+
 ## 更多面试题
 
 - [常见 css 的面试题](./css.md)
