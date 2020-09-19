@@ -117,6 +117,107 @@ Tree-shaking 可以用来剔除 javascript 中不用的死代码，它依赖静�
 
 Webpack 在启动后，会从 Entry 开始，递归解析 Entry 依赖的所有 Module，每找到一个 Module，就会根据 Module.rules 里配置的 Loader 规则进行相应的转换处理，对 Module 进行转换后，再解析出当前 Module 依赖的 Module，这些 Module 会以 Entry 为单位进行分组，即为一个 Chunk。因此一个 Chunk，就是一个 Entry 及其所有依赖的 Module 合并的结果。最后 Webpack 会将所有的 Chunk 转换成文件输出 Output。在整个构建流程中，Webpack 会在恰当的时机执行 Plugin 里定义的逻辑，从而完成 Plugin 插件的优化任务
 
+### 14. 做了哪些 Webpack 性能优化？
+
+- 优化 Loader 的文件搜索范围
+  ```js
+  module.exports = {
+    module:{
+      rules:[
+        {
+          //js文件才使用babel
+          test:/\.js$/,
+          loader:'babel-loader',
+          //只在src文件夹下查找
+          include:[resolve('src')]，
+          //不会去查找的路径
+          exclude:/node_modules/
+        }
+      ]
+    }
+    }
+  ```
+- 把 Babel 编译过的文件缓存起来
+
+  > 下次只需要编译更改过的代码文件即可
+
+```js
+loader: 'babel-loader?cacheDirectory=ture';
+```
+
+- HappyPack
+  > 因为 Node 是单线程运行的，所以 Webpack 在打包的过程中也是单线程的，特别是在执行 Loader 的时候，这样会导致等待的情况
+  > HappyPack 可以将 Loader 的同步执行转换为并行的
+  ```js
+  module:{
+    loader:[
+        {
+          //js文件才使用babel
+          test:/\.js$/,
+          //只在src文件夹下查找
+          include:[resolve('src')]，
+          exclude:/node_modules/,
+          //id后面的内容对应下面
+          loader:'happypack/loader?id=happypack'
+        }
+    ]
+    },
+    plugins:[
+      new HappyPack({
+        id:'happypack',
+        loaders:['babel-loader?cacheDirectory'],
+        //开启4个线程
+        threads:4
+      })
+    ]
+  ```
+- DllPlugin
+  > DllPlugin 可以将特定的类库提前打包然后引入。这种方式可以极大的减少打包类库的次数，只有当类库更新版本才有需要重新打包，并且也实现了将公共代码抽离成单独文件的优化方案
+
+```js
+//单独配置在一个文件里
+//webpack.dll.conf.js
+const path = require('path');
+const webpack = require('webpack');
+module.exports = {
+  entry: {
+    //想统一打包的库
+    vendor: ['react']
+  },
+  output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].dll.js',
+    library: '[name]-[hash]'
+  },
+  plugins: [
+    new webpack.DllPlugin({
+      //name必须和output.library一致
+      name: '[name]-[hash]',
+      //该属性需要与DllReferencePlugin中一致
+      context: __dirname,
+      path: path.join(__dirname, 'dist', '[name]-mainfest.json')
+    })
+  ]
+};
+```
+
+然后需要执行这个配置文件生成依赖文件，接下来需要使用 DllReferencePluhin 将依赖文件引入项目中
+
+```js
+//webpack.conf.js
+module.exports = {
+  //...省略其他配置
+  plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      mainfest: require('./dist/vendor-mainfest.json')
+    })
+  ]
+};
+```
+
+- Tree Shaking
+  > Tree Shaking 可以实现删除项目中未被引用的代码
 
 ## 更多面试题
 

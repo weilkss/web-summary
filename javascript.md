@@ -718,6 +718,72 @@ ES6 之前 JavaScript 没有块级作用域,只有全局作用域和函数作用
 })();
 ```
 
+### 50. 什么是防抖节流防抖节流？怎么实现
+
+**防抖(debounce)**
+
+所谓防抖，就是指触发事件后在 n 秒内函数只能执行一次，如果在 n 秒内又触发了事件，则会重新计算函数执行时间
+
+比如滚动事件监听
+
+```js
+function debounce(fn, delay) {
+  let timer = null; //借助闭包
+  return function () {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    timer = setTimeout(fn, delay); // 简化写法
+  };
+}
+// 然后是旧代码
+function showTop() {
+  var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+  console.log('滚动条位置：' + scrollTop);
+}
+window.onscroll = debounce(showTop, 1000); // 为了方便观察效果我们取个大点的间断值，实际使用根据需要来配置
+```
+
+**节流(throttle)**
+
+我们可以设计一种类似控制阀门一样定期开放的函数，也就是让函数执行一次后，在某个时间段内暂时失效，过了这段时间后再重新激活（类似于技能冷却时间
+
+但是这里不只是指定固定时间，也可以是是时间戳差值，也可以用回调函数（比如异步请求成功后回调打开开关）
+
+```js
+// 指定时间
+function throttle(fn, delay) {
+  let valid = true;
+  return function () {
+    if (!valid) {
+      //休息时间 暂不接客
+      return false;
+    }
+    // 工作时间，执行函数并且在间隔期内把状态位设为无效
+    valid = false;
+    setTimeout(() => {
+      fn();
+      valid = true;
+    }, delay);
+  };
+}
+
+function throttle(fn)
+  let valid = true;
+  return function () {
+    if (!valid) {
+      //休息时间 暂不接客
+      return false;
+    }
+    valid = false;
+    // 给我们的方法传一个回调过去，在方法里异步请求完成然后执行回调就ok了
+    fn(functin(){
+      valid = true
+    });
+  };
+}
+```
+
 ## 更多面试题
 
 - [常见 css 的面试题](./css.md)
