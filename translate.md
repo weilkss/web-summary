@@ -35,3 +35,7 @@
 | `subscribe`     | `sa pu si guai pu`    | 订阅     |
 | `proxy`         | `pa bu se`            | 代理     |
 | `property`      | `pa bu li`            | 财产     |
+| `direction`     | `dui a ke xing`       | 方向     |
+| `column`        | `ka leng`             | 柱       |
+| `space`         | `si bei si`           | 空间     |
+| `between`       | `bei chun ne`         | 之间     |

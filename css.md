@@ -522,6 +522,49 @@ display:-webkit-box;  //将对象作为弹性伸缩盒子模型显示
 -webkit-box-orient:vertical;设置弹性盒对象的子元素的排列方式
 ```
 
+### 43. flex 布局
+
+```css
+.box {
+  /* 块元素 */
+  display: flex;
+  /* 行内元素 */
+  display: inline-flex;
+}
+```
+
+**容器的属性**
+
+```css
+.box {
+  flex-direction: row | row-reverse | column | column-reverse;
+  flex-wrap: nowrap | wrap | wrap-reverse;
+  flex-flow: <flex-direction> || <flex-wrap>;
+  justify-content: flex-start | flex-end | center | space-between | space-around;
+  align-items: flex-start | flex-end | center | baseline | stretch;
+  align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+}
+```
+
+**项目的属性**
+
+```css
+.item{
+   // order属性定义项目的排列顺序。数值越小，排列越靠前，默认为0
+   order: 0;
+   // flex-grow属性定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大
+   flex-grow: 0;
+   // flex-shrink属性定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
+   flex-shrink:1;
+   // flex-basis属性定义了在分配多余空间之前，项目占据的主轴空间（main size）
+   flex-basis: 0 | auto
+   // flex属性是flex-grow, flex-shrink 和 flex-basis的简写，默认值为0 1 auto
+   flex: 0;
+   // align-self属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性
+   align-self: auto | flex-start | flex-end | center | baseline | stretch;
+}
+```
+
 ## 更多面试题
 
 - [常见 html 的面试题](./html.md)

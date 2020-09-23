@@ -396,6 +396,16 @@ state 对象在 react 应用中是不可变的，需要使用 setState 方法更
 
 - vue 的列表对比，采用从两端到中间的比对方式，而 react 则采用从左到右依次比对的方式。当一个集合，只是把最后一个节点移动到了第一个，react 会把前面的节点依次移动，而 vue 只会把最后一个节点移动到第一个。总体上，vue 的对比方式更高效。
 
+### 28. react 中的三种状态复用
+
+- class 传统组件
+- 高阶组件
+- mixins 混入
+
+### 29. 高阶组件 详解
+
+[React 中的高阶组件及其应用场景](https://zhuanlan.zhihu.com/p/61711492?utm_source=wechat_session)
+
 ## 更多面试题
 
 - [常见 css 的面试题](./css.md)
