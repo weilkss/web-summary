@@ -164,4 +164,5 @@ ZRender 是一个 canvas 类库，MVC 封装，数据驱动，提供类 Dom 事�
 - [常见 react 的面试题](./react.md)
 - [常见 webpack 的面试题](./webpack.md)
 - [常见 node 的面试题](./node.md)
+- [常见 web 算法面试题](./algorithm.md)
 - [优化相关](./optimize.md)

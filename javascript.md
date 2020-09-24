@@ -796,6 +796,14 @@ function throttle(fn)
 
 有些人认为将功能注入对象原型中会导致原型污染和函数起源方面的不确定性。
 
+### 52. js 实现常用数据结构
+
+- 栈
+- 队列
+- 链表
+- 哈希表
+- 树
+
 ## 更多面试题
 
 - [常见 css 的面试题](./css.md)
@@ -805,5 +813,6 @@ function throttle(fn)
 - [常见 react 的面试题](./react.md)
 - [常见 webpack 的面试题](./webpack.md)
 - [常见 node 的面试题](./node.md)
+- [常见 web 算法面试题](./algorithm.md)
 - [前端工程化](./eng.md)
 - [优化相关](./optimize.md)

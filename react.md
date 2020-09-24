@@ -415,5 +415,6 @@ state 对象在 react 应用中是不可变的，需要使用 setState 方法更
 - [常见 vue 的面试题](./vue.md)
 - [常见 webpack 的面试题](./webpack.md)
 - [常见 node 的面试题](./node.md)
+- [常见 web 算法面试题](./algorithm.md)
 - [前端工程化](./eng.md)
 - [优化相关](./optimize.md)

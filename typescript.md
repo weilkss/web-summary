@@ -195,6 +195,14 @@ $ tsc -sourcemap file1.ts
 tsc --declaration file1.ts
 ```
 
+### 21. interface 和 type 的区别
+
+> 首先，在 ts 中，定义类型由两种方式：接口（interface）和类型别名（type alias）
+
+- interface 只能定义对象类型，type 声明的方式可以定义组合类型，交叉类型和原始类型，如果用 type alias 声明的方式，会导致一些功能的缺失
+- interface 方式可以实现接口的 extends/implements，而 type 不行
+- interface 可以实现接口的 merge，但是 type 不行
+
 ## 更多面试题
 
 - [常见 css 的面试题](./css.md)
@@ -204,5 +212,6 @@ tsc --declaration file1.ts
 - [常见 react 的面试题](./react.md)
 - [常见 webpack 的面试题](./webpack.md)
 - [常见 node 的面试题](./node.md)
+- [常见 web 算法面试题](./algorithm.md)
 - [前端工程化](./eng.md)
 - [优化相关](./optimize.md)

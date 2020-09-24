@@ -184,5 +184,6 @@ v-for 、 v-if 、v-bind、v-on、v-show、v-else
 - [常见 react 的面试题](./react.md)
 - [常见 webpack 的面试题](./webpack.md)
 - [常见 node 的面试题](./node.md)
+- [常见 web 算法面试题](./algorithm.md)
 - [前端工程化](./eng.md)
 - [优化相关](./optimize.md)
